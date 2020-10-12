@@ -3,6 +3,10 @@
     <div>
       {{ formattedTime }}
     </div>
+
+    <button @click="sendNotification">
+      Notify
+    </button>
   </div>
 </template>
 
@@ -32,6 +36,19 @@ export default {
         timeStyle: 'medium'
       })
       return dateFormat.format(this.currentTime)
+    }
+  },
+  methods: {
+    sendNotification: function() {
+      console.log(Notification.permission)
+      // const notification = new Notification('時間だよ', {
+      //   body: `今は${this.formattedTime}だよ。`
+      // })
+      const notification = new Notification('時間だよ')
+
+      notification.onclick = () => {
+        console.log('hoge')
+      }
     }
   }
 }
