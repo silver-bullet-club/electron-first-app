@@ -1,17 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      {{ formattedTime }}
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data: () => {
+    return {
+      currentTime: Date.now(),
+      intervalId: null
+    }
+  },
+  created: function() {
+    const updateTime = () => {
+      this.currentTime = Date.now()
+    }
+    this.intervalId = setInterval(updateTime, 1000);
+  },
+  destroyed: function() {
+    clearInterval(this.intervalId)
+  },
+  computed: {
+    formattedTime: function() {
+      const dateFormat = new Intl.DateTimeFormat('ja', {
+        dateStyle: 'medium',
+        timeStyle: 'medium'
+      })
+      return dateFormat.format(this.currentTime)
+    }
   }
 }
 </script>
