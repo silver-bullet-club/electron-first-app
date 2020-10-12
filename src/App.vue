@@ -4,13 +4,14 @@
       {{ formattedTime }}
     </div>
 
-    <button @click="sendNotification">
+    <button @click="alarm">
       Notify
     </button>
   </div>
 </template>
 
 <script>
+import soundurl from './assets/sounds/temple_bell.mp3'
 
 export default {
   name: 'App',
@@ -39,16 +40,22 @@ export default {
     }
   },
   methods: {
+    alarm: function() {
+      this.sendNotification()
+      this.playSound()
+    },
     sendNotification: function() {
-      console.log(Notification.permission)
-      // const notification = new Notification('時間だよ', {
-      //   body: `今は${this.formattedTime}だよ。`
-      // })
-      const notification = new Notification('時間だよ')
+      const notification = new Notification('時間だよ', {
+        silent: true
+      })
 
       notification.onclick = () => {
         console.log('hoge')
       }
+    },
+    playSound() {
+      const audio = new Audio(soundurl)
+      audio.play()
     }
   }
 }
