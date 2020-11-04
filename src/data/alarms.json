@@ -26,6 +26,11 @@
       "message": "hoge"
     },
     {
+      "hours": 16,
+      "minutes": 58,
+      "message": "hoge"
+    },
+    {
       "hours": 17,
       "minutes": 0,
       "message": "残りあと1時間"

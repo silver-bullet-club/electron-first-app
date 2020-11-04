@@ -40,7 +40,7 @@ export default {
 
       let now = new Date()
       if (this.currentAlarm && this.currentAlarm.hours == now.getHours() && this.currentAlarm.minutes == now.getMinutes()) {
-        this.alarm()
+        this.alarm(this.currentAlarm.message)
         this.currentAlarm = alarmQueue.shift()
       }
     }
@@ -59,12 +59,12 @@ export default {
     }
   },
   methods: {
-    alarm: function() {
-      this.sendNotification()
+    alarm: function(message) {
+      this.sendNotification(message)
       this.playSound()
     },
-    sendNotification: function() {
-      const notification = new Notification('時間だよ', {
+    sendNotification: function(message) {
+      const notification = new Notification(message, {
         silent: true
       })
 
