@@ -12,18 +12,37 @@
 
 <script>
 import soundurl from './assets/sounds/temple_bell.mp3'
+import AlarmQueue from './lib/alarm_queue'
+import { alarms } from './data/alarms.json'
 
 export default {
   name: 'App',
   data: () => {
     return {
       currentTime: Date.now(),
+      currentAlarm: null,
       intervalId: null
     }
   },
   created: function() {
+    let alarmQueue = new AlarmQueue(alarms)
+    this.currentAlarm = alarmQueue.shift()
+    const startedAt = new Date()
+    const startTime = `${startedAt.getHours()}${startedAt.getMinutes()}`
+
+    console.log(startTime)
+    while (`${this.currentAlarm.hours}${this.currentAlarm.minutes}` < startTime) {
+      this.currentAlarm = alarmQueue.shift()
+    }
+
     const updateTime = () => {
       this.currentTime = Date.now()
+
+      let now = new Date()
+      if (this.currentAlarm && this.currentAlarm.hours == now.getHours() && this.currentAlarm.minutes == now.getMinutes()) {
+        this.alarm()
+        this.currentAlarm = alarmQueue.shift()
+      }
     }
     this.intervalId = setInterval(updateTime, 1000);
   },

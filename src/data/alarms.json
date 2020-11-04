@@ -1,0 +1,39 @@
+{
+  "alarms": [
+    {
+      "hours": 16,
+      "minutes": 11,
+      "message": "残りあと1時間"
+    },
+    {
+      "hours": 16,
+      "minutes": 32,
+      "message": "foo"
+    },
+    {
+      "hours": 16,
+      "minutes": 33,
+      "message": "bar"
+    },
+    {
+      "hours": 16,
+      "minutes": 34,
+      "message": "hoge"
+    },
+    {
+      "hours": 16,
+      "minutes": 42,
+      "message": "hoge"
+    },
+    {
+      "hours": 17,
+      "minutes": 0,
+      "message": "残りあと1時間"
+    },
+    {
+      "hours": 18,
+      "minutes": 0,
+      "message": "定時〜"
+    }
+  ]
+}
